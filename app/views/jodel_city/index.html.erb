@@ -1,0 +1,15 @@
+<div class="left jumbotron">
+<h2>Top-Posts bei Jodel (deutschlandweit)</h2>
+<ul>
+  <% @jodel_cities.each do |city| %>
+  <li>
+  <b><%=city.name%></b> feiert mit <b><%=city.loudest_votes%></b> Upvotes:<br>
+  <%= city.loudest_jodel %>
+  </li>
+  <% end %>
+</ul>
+
+<hr>
+
+Erstellt von Patrick Petrovic (<a href="http://twitter.com/ppati000">Twitter</a>/<a href="mailto:ppati000@me.com">Mail</a>). Alle 5 Minuten aktualisiert. Diese Website ist inoffiziell und nicht mit Jodel affiliiert.
+</div>
