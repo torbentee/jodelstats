@@ -14,7 +14,12 @@ class JodelHandler
 
   def loudest_post(latitude, longitude)
     response = get_posts(latitude, longitude)
-    response["voted"][0]
+    puts response
+    if response["voted"].nil?
+      {"vote_count" => 0, "message" => "(Kein Jodel gefunden. Schau in 5 Minuten nochmal vorbei.)"}
+    else
+      response["voted"][0]
+    end
   end
 
 end
