@@ -7,6 +7,10 @@
           </div><div class="row">
         <% end %>
         <% jodel = city.jodel_posts.order(vote_count: :desc).first %>
+        <% if jodel.nil? %>
+          <% jodel = JodelPost.new(vote_count: 0, message: "(Ups, keinen Jodel gefunden. Versuch es doch in ein paar Minuten noch einmal!)",
+          color: "404040") %>
+        <% end %>
         <div class="col-md-4">
           <b><%=city.name%></b> feiert mit <b><%=jodel.vote_count%></b> Upvotes:<br>
           <div style="background-color: #<%= jodel.color %>; color: white; margin-bottom:1em; padding-right: 0.5em; padding-left: 0.5em">
@@ -23,5 +27,6 @@
 <hr>
 <div class="legal">
 Erstellt von Patrick Petrovic (<a href="http://twitter.com/ppati000">Twitter</a>/<a href="mailto:ppati000@me.com">Mail</a>). Alle 5 Minuten aktualisiert. Diese Website ist inoffiziell und nicht mit Jodel affiliiert.
+<br>
 </div>
 </div>
