@@ -11,18 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160308212443) do
+ActiveRecord::Schema.define(version: 20160310173422) do
 
   create_table "jodel_cities", force: :cascade do |t|
     t.string   "name"
-    t.string   "loudest_jodel"
     t.string   "latitude"
     t.string   "longitude"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.integer  "loudest_votes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "jodel_cities", ["name"], name: "index_jodel_cities_on_name", unique: true
+
+  create_table "jodel_posts", force: :cascade do |t|
+    t.string   "post_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "message"
+    t.integer  "vote_count"
+    t.string   "color"
+    t.string   "image_url"
+    t.string   "thumbnail_url"
+    t.integer  "jodel_city_id"
+  end
+
+  add_index "jodel_posts", ["jodel_city_id", "vote_count"], name: "index_jodel_posts_on_jodel_city_id_and_vote_count"
+  add_index "jodel_posts", ["jodel_city_id"], name: "index_jodel_posts_on_jodel_city_id"
+  add_index "jodel_posts", ["post_id"], name: "index_jodel_posts_on_post_id", unique: true
 
 end

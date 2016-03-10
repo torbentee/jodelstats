@@ -1,15 +1,27 @@
-<div class="left jumbotron">
+<div class="left">
 <h2>Top-Posts bei Jodel (deutschlandweit)</h2>
-<ul>
-  <% @jodel_cities.each do |city| %>
-  <li>
-  <b><%=city.name%></b> feiert mit <b><%=city.loudest_votes%></b> Upvotes:<br>
-  <%= city.loudest_jodel %>
-  </li>
+<br>
+<div class="row">
+  <% @jodel_cities.each_with_index do |city, i| %>
+        <% if i != 0 && i % 3 == 0 %>
+          </div><div class="row">
+        <% end %>
+        <% jodel = city.jodel_posts.order(:vote_count).first %>
+        <div class="col-md-4">
+          <b><%=city.name%></b> feiert mit <b><%=jodel.vote_count%></b> Upvotes:<br>
+          <div style="background-color: #<%= jodel.color %>; color: white; margin-bottom:1em; padding-right: 0.5em; padding-left: 0.5em">
+            <% if !jodel.thumbnail_url.nil? %>
+              <a class="image_link" href="<%=jodel.image_url%>" target="_blank">(Hier klicken zum Ansehen)</a>
+            <% else %>
+              <%= jodel.message %>
+            <% end %>
+          </div>
+        </div>
   <% end %>
-</ul>
+</div>
 
 <hr>
-
+<div class="legal">
 Erstellt von Patrick Petrovic (<a href="http://twitter.com/ppati000">Twitter</a>/<a href="mailto:ppati000@me.com">Mail</a>). Alle 5 Minuten aktualisiert. Diese Website ist inoffiziell und nicht mit Jodel affiliiert.
+</div>
 </div>
