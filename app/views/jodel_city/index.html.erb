@@ -6,7 +6,7 @@
         <% if i != 0 && i % 3 == 0 %>
           </div><div class="row">
         <% end %>
-        <% jodel = city.jodel_posts.order(:vote_count).first %>
+        <% jodel = city.jodel_posts.order(vote_count: :desc).first %>
         <div class="col-md-4">
           <b><%=city.name%></b> feiert mit <b><%=jodel.vote_count%></b> Upvotes:<br>
           <div style="background-color: #<%= jodel.color %>; color: white; margin-bottom:1em; padding-right: 0.5em; padding-left: 0.5em">
