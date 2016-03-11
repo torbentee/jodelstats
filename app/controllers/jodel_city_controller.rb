@@ -7,7 +7,7 @@ class JodelCityController < ApplicationController
     handler = JodelHandler.new("a44549e5-8f61-4db7-acbf-d9c4673f53ff")
     cities = JodelCity.all
     cities.each do |city|
-      city.jodel_posts.delete_all
+      city.jodel_posts.destroy_all
       response = handler.get_posts(city.latitude, city.longitude)
       top_posts = response["voted"]
       top_posts.each do |post|
