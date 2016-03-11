@@ -11,14 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160310173422) do
+ActiveRecord::Schema.define(version: 20160311122544) do
 
   create_table "jodel_cities", force: :cascade do |t|
     t.string   "name"
     t.string   "latitude"
     t.string   "longitude"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "highest_votes"
   end
 
   add_index "jodel_cities", ["name"], name: "index_jodel_cities_on_name", unique: true
