@@ -17,7 +17,7 @@
             <% if !jodel.thumbnail_url.nil? %>
               <a class="image_link" href="<%=jodel.image_url%>" target="_blank">(Hier klicken zum Ansehen)</a>
             <% else %>
-              <%= jodel.message %>
+              <%= simple_format(jodel.message) %>
             <% end %>
           </div>
         </div>

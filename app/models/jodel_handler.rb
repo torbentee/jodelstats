@@ -8,7 +8,6 @@ class JodelHandler
   end
 
   def get_posts(latitude, longitude)
-    puts "/posts/location/combo?lat=#{latitude}&lng=#{longitude}&access_token=#{@api_key}&"
     self.class.get("/posts/location/combo?lat=#{latitude}&lng=#{longitude}&access_token=#{@api_key}&")
   end
 
