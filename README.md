@@ -10,6 +10,7 @@ If you have any suggestions or if you would like to reach out to me, feel free t
 
 ### Can I contribute to this thing?
 Yes, of course! The process is as follows:
+
 1. Clone this repository
 2. Create a new branch
 3. Push your changes
