@@ -17,6 +17,7 @@ Yes, of course! The process is as follows:
 4. Create a pull request
 
 ### Todo
+- Fix API Keys (API Keys are currently invalidated after 1 week, and fetching new API keys needs to be implemented)
 - Internationalization
 - View more posts from one city
 - Search function
