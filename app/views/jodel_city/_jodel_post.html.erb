@@ -1,0 +1,13 @@
+
+  <div style="background-color: #<%= jodel.color %>; color: white; margin-bottom:1em; padding-right: 0.5em; padding-left: 0.5em">
+    <% if !jodel.thumbnail_url.nil? %>
+      <div class="imgContainer">
+      <a class="image_link" href="<%=jodel.image_url%>" data-lighter>
+        <img src="<%=jodel.thumbnail_url%>" class="centered-and-cropped">
+        <span class="img-text" style="vertical-align: middle;">Klicken zum Ansehen</span>
+        </a>
+      </div>
+    <% else %>
+      <%= simple_format(jodel.message) %>
+    <% end %>
+  </div>

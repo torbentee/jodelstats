@@ -1,0 +1,15 @@
+<div class="left">
+<h2>Lauteste Jodel in <%= @city.name %></h2>
+<br>
+<div class="row">
+  <% @city.jodel_posts.each_with_index do |jodel, i| %>
+        <% if i != 0 && i % 3 == 0 %>
+          </div><div class="row">
+        <% end %>
+        <div class="col-md-4">
+          Mit <b><%= jodel.vote_count %></b> Upvotes:
+          <%= render 'jodel_post', city: @city, jodel: jodel %>
+        </div>
+  <% end %>
+</div>
+</div>

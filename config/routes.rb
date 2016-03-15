@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'jodel_city#index'
+  get 'cities/:city_name', to: 'jodel_city#show', as: 'jodel_city_path'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

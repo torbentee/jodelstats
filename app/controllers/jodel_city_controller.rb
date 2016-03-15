@@ -3,6 +3,10 @@ class JodelCityController < ApplicationController
     @jodel_cities = JodelCity.all.order(highest_votes: :desc)
   end
 
+  def show
+    @city = JodelCity.find_by(name: params[:city_name])
+  end
+
   def self.update_cities
     handler = JodelHandler.new("a44549e5-8f61-4db7-acbf-d9c4673f53ff")
     cities = JodelCity.all

@@ -3,28 +3,14 @@
 <br>
 <div class="row">
   <% @jodel_cities.each_with_index do |city, i| %>
+        <%= puts "swag" %>
         <% if i != 0 && i % 3 == 0 %>
           </div><div class="row">
         <% end %>
-        <% jodel = city.jodel_posts.order(vote_count: :desc).first %>
-        <% if jodel.nil? %>
-          <% jodel = JodelPost.new(vote_count: 0, message: "(Ups, keinen Jodel gefunden. Versuch es doch in ein paar Minuten noch einmal!)",
-          color: "404040") %>
-        <% end %>
         <div class="col-md-4">
-          <b><%=city.name%></b> feiert mit <b><%=jodel.vote_count%></b> Upvotes:<br>
-          <div style="background-color: #<%= jodel.color %>; color: white; margin-bottom:1em; padding-right: 0.5em; padding-left: 0.5em">
-            <% if !jodel.thumbnail_url.nil? %>
-              <div class="imgContainer">
-              <a class="image_link" href="<%=jodel.image_url%>" data-lighter>
-                <img src="<%=jodel.thumbnail_url%>" class="centered-and-cropped">
-                <span class="img-text" style="vertical-align: middle;">Klicken zum Ansehen</span>
-                </a>
-              </div>
-            <% else %>
-              <%= simple_format(jodel.message) %>
-            <% end %>
-          </div>
+          <% jodel = get_first_jodel(city) %>
+          <b><%=link_to(city.name, "cities/" + city.name)%></b> feiert mit <b><%=jodel.vote_count%></b> Upvotes:<br>
+          <%= render 'jodel_post', city: city, jodel: jodel %>
         </div>
   <% end %>
 </div>
