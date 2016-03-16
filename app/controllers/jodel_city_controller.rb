@@ -8,7 +8,7 @@ class JodelCityController < ApplicationController
   end
 
   def self.update_cities
-    handler = JodelHandler.new("08b4d4e7-43b6-4916-8974-50d75939a2f5")
+    handler = JodelHandler.new("63d8e705-982e-4dae-949b-ce568f828c64")
     cities = JodelCity.all
     cities.each do |city|
       city.jodel_posts.destroy_all
