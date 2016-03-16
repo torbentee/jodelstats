@@ -11,14 +11,12 @@ If you have any suggestions or if you would like to reach out to me, feel free t
 ### Can I contribute to this thing?
 Yes, of course! The process is as follows:
 
-1. Clone this repository
-2. Create a new branch
-3. Push your changes
-4. Create a pull request
+1. Fork this repository
+2. Push your changes
+3. Create a pull request
 
 ### Todo
 - Fix API Keys (API Keys are currently invalidated after 1 week, and fetching new API keys needs to be implemented)
 - Internationalization
-- View more posts from one city
-- Search function
+- Search function (probably using Google Maps API)
 - Anything else you like
