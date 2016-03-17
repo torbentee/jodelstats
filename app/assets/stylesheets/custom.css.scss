@@ -50,7 +50,6 @@ textarea {
 }
 
 .centered-and-cropped {
-  object-fit: cover;
   height: 125px;
   width: 100%;
   -webkit-filter: blur(10px);
@@ -82,6 +81,8 @@ a.image_link {
   right: 0;
   text-align: center;
   width: 90%;
+  vertical-align: middle;
+  top:20px;
 }
 
 .navbar-inverse .navbar-nav > li > a {

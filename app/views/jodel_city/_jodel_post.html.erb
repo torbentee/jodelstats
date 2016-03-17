@@ -3,8 +3,9 @@
     <% if !jodel.thumbnail_url.nil? %>
       <div class="imgContainer">
         <a class="image_link" href="<%=jodel.image_url%>" data-lighter>
-        <img src="<%=jodel.thumbnail_url%>" class="centered-and-cropped">
-        <span class="img-text" style="vertical-align: middle;">Klicken zum Ansehen</span>
+        <div class="centered-and-cropped" style="background: url(<%=jodel.thumbnail_url%>) center center;">
+        </div>
+        <div class="img-text">Klicken zum Ansehen</div>
         </a>
       </div>
     <% else %>
