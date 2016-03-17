@@ -51,19 +51,20 @@ textarea {
 
 .centered-and-cropped {
   object-fit: cover;
-  height: 120px;
+  height: 125px;
   width: 100%;
   -webkit-filter: blur(10px);
   -moz-filter: blur(10px);
   -o-filter: blur(10px);
   -ms-filter: blur(10px);
   filter: blur(10px);
-  margin: -5px -10px -10px 0px;
+  margin: -10px -10px -10px 0px;
   overflow: hidden;
 }
 
 .imgContainer {
   overflow: hidden;
+  height: 105px;
 }
 
 a.image_link {
