@@ -11,13 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160323120117) do
+ActiveRecord::Schema.define(version: 20160323161639) do
 
   create_table "api_keys", force: :cascade do |t|
     t.string   "token"
     t.datetime "expiration_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "refresh_token"
+    t.string   "current_client_id"
+    t.string   "distinct_id"
   end
 
   create_table "jodel_cities", force: :cascade do |t|

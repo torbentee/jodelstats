@@ -44,9 +44,8 @@ class JodelHandler
     if response["access_token"].nil?
       puts "ERROR: COULD NOT REFRESH TOKEN"
     else
-      ApiKey.create(token: response["access_token"],
+      ApiKey.first.update_attributes(token: response["access_token"],
         expiration_date: Time.at(response["expiration_date"]).to_datetime)
-      ApiKey.first.destroy
     end
   end
 
