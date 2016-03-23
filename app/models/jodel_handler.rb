@@ -21,4 +21,33 @@ class JodelHandler
     end
   end
 
+  def refresh_token(current_client_id, distinct_id, refresh_token)
+    puts current_client_id
+    puts distinct_id
+    puts refresh_token
+    response = self.class.post("/users/refreshToken?access_token=#{@api_key}", {
+        :headers => {
+          "Content-Type" => "application/json",
+          "Accept" => "application/json",
+          "Accept-Language" => "en;q=1, de-US;q=0.9, hr-HR;q=0.8",
+          "Accept-Encoding" => "gzip, deflate",
+          "User-Agent" => "Jodel/3.9.1 (iPhone; iOS 9.3; Scale/2.00)",
+          "X-Client-Type" => "ios_3.9.1"
+        },
+        :body => {
+            current_client_id: current_client_id,
+            distinct_id: distinct_id,
+            refresh_token: refresh_token
+          }.to_json
+      })
+    puts response
+    if response["access_token"].nil?
+      puts "ERROR: COULD NOT REFRESH TOKEN"
+    else
+      ApiKey.create(token: response["access_token"],
+        expiration_date: Time.at(response["expiration_date"]).to_datetime)
+      ApiKey.first.destroy
+    end
+  end
+
 end

@@ -8,7 +8,13 @@ class JodelCityController < ApplicationController
   end
 
   def self.update_cities
-    handler = JodelHandler.new("63d8e705-982e-4dae-949b-ce568f828c64")
+    @api_key ||= ApiKey.first.token
+    handler = JodelHandler.new(@api_key)
+
+    if ApiKey.first.expiration_date < 1.hour.from_now
+      self.update_api_token
+    end
+
     cities = JodelCity.all
     cities.each do |city|
       city.jodel_posts.destroy_all
@@ -24,6 +30,15 @@ class JodelCityController < ApplicationController
               image_url: post["image_url"], thumbnail_url: post["thumbnail_url"])
       end
     end
+  end
+
+  def self.update_api_token
+    current_client_id = "hMVuaJY/usV28y/CoGTs+of/MEmWah2ewWCa1zJB3aA="
+    distinct_id = "564ad8129798003757f499b0"
+    refresh_token = "1bb76acc-b323-4ac1-a689-0101a31287df"
+
+    handler = JodelHandler.new(ApiKey.first.token)
+    handler.refresh_token(current_client_id, distinct_id, refresh_token)
   end
 
 end
