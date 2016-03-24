@@ -16,7 +16,7 @@ Yes, of course! The process is as follows:
 3. Create a pull request
 
 ### Todo
-- Fix API Keys (API Keys are currently invalidated after 1 week, and fetching new API keys needs to be implemented)
+- ~~Fix API Keys (API Keys are currently invalidated after 1 week, and fetching new API keys needs to be implemented)~~ Edit: The app can now fetch new API keys, but only if a valid API key **already exists** in the database. Moreover, if several environments are used (e.g. dev and production), refreshing the API key in one environment will leave the other environment with the old, now invalid API key. Possible fixes for the future: Disable fetching keys for development, or find a way to obtain entirely new API keys which do not invalidate old API keys.
 - Internationalization
 - Search function (probably using Google Maps API)
 - Anything else you like
