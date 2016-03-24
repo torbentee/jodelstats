@@ -1,5 +1,5 @@
 <div class="left">
-<h2>Top-Posts bei Jodel (deutschlandweit)</h2>
+<h2>Top-Posts bei Jodel (<%= params[:country_name] %>)</h2>
 <br>
 <div class="row">
   <% @jodel_cities.each_with_index do |city, i| %>
@@ -9,7 +9,7 @@
         <% end %>
         <div class="col-md-4">
           <% jodel = get_first_jodel(city) %>
-          <b><%=link_to(city.name, "cities/" + city.name)%></b> feiert mit <b><%=jodel.vote_count%></b> Upvotes:<br>
+          <b><%=link_to(city.name, "/cities/" + city.name)%></b> feiert mit <b><%=jodel.vote_count%></b> Upvotes:<br>
           <%= render 'jodel_post', city: city, jodel: jodel %>
         </div>
   <% end %>

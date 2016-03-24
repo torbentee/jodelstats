@@ -1,6 +1,6 @@
 class JodelCityController < ApplicationController
   def index
-    @jodel_cities = JodelCity.all.order(highest_votes: :desc)
+    @jodel_cities = JodelCity.where(country: params[:country_name]).order(highest_votes: :desc)
   end
 
   def show
@@ -33,11 +33,12 @@ class JodelCityController < ApplicationController
   end
 
   def self.update_api_token
-    current_client_id = "hMVuaJY/usV28y/CoGTs+of/MEmWah2ewWCa1zJB3aA="
-    distinct_id = "564ad8129798003757f499b0"
-    refresh_token = "1bb76acc-b323-4ac1-a689-0101a31287df"
+    api_key = ApiKey.first
+    current_client_id = api_key.current_client_id
+    distinct_id = api_key.distinct_id
+    refresh_token = api_key.refresh_token
 
-    handler = JodelHandler.new(ApiKey.first.token)
+    handler = JodelHandler.new(api_key.token)
     handler.refresh_token(current_client_id, distinct_id, refresh_token)
   end
 
