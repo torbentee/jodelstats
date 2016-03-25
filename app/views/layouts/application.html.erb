@@ -9,25 +9,35 @@
 </head>
 <body>
   <header class="navbar navbar-fixed-top navbar-inverse"  style="background-color: #<%=random_color%>">
-        <div class="container">
-          <%= link_to "Jodel Stats", '/', id: "logo" %>
-          <nav>
-            <ul class="nav navbar-nav navbar-right">
-              <li><%= link_to "Germany",   '/countries/DE' %></li>
-              <li><%= link_to "Austria",   '/countries/AT' %></li>
-              <li><%= link_to "Switzerland",   '/countries/CH' %></li>
-              <li>
-                <%= link_to search_path do %>
-
-                  <span class="glyphicon glyphicon-search"></span> Search
-
-                <% end %>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </header>
       <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <%= link_to "Jodel Stats", '/', class: "navbar-brand" %>
+        </div>
+        <div id="myNavbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "Germany",   '/countries/DE' %></li>
+            <li><%= link_to "Austria",   '/countries/AT' %></li>
+            <li><%= link_to "Switzerland",   '/countries/CH' %></li>
+            <li>
+              <%= link_to search_path do %>
+
+                <span class="glyphicon glyphicon-search"></span> Search
+
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+      <div class="container">
+        <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type == "error" ? "danger" : message_type %>"><%= message %></div>
+        <% end %>
         <%= yield %>
         <hr>
         <div class="legal">

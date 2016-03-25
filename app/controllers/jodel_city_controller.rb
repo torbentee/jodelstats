@@ -14,12 +14,22 @@ class JodelCityController < ApplicationController
   def create
     unless @city = JodelCity.where("lower(name) = ?", params[:city][:name].downcase).first
       @gHandler ||= GoogleHandler.new
-      @city = JodelCity.create(@gHandler.coordinates_for(params[:city][:name]))
-      @api_key ||= ApiKey.first.token
-      handler = JodelHandler.new(@api_key)
-      JodelCityController.update_city(@city, handler)
+      result = @gHandler.coordinates_for(params[:city][:name])
+
+      if !result.nil?
+        @city = JodelCity.create(result)
+        @api_key ||= ApiKey.first.token
+        handler = JodelHandler.new(@api_key)
+        JodelCityController.update_city(@city, handler)
+      end
     end
-    redirect_to "/cities/#{@city.name}"
+
+    if @city.nil?
+      puts "redirect WITH FLASH"
+      redirect_to '/search', flash: {error: "Es konnte leider keine Stadt mit diesem Namen gefunden werden."}
+    else
+      redirect_to "/cities/#{URI::escape(@city.name)}"
+    end
   end
 
   def self.update_cities

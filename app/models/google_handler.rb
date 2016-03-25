@@ -4,7 +4,7 @@ class GoogleHandler
   @@base_uri = "https://maps.googleapis.com/maps/api/geocode/json?"
 
   def coordinates_for(address)
-    response = self.class.get(@@base_uri + "address=#{address}&key=#{@@api_key}")
+    response = self.class.get(@@base_uri + "address=#{URI::escape(address)}&key=#{@@api_key}")
     if response["status"] != "OK"
       nil
     else
