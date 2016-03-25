@@ -16,6 +16,13 @@
               <li><%= link_to "Germany",   '/countries/DE' %></li>
               <li><%= link_to "Austria",   '/countries/AT' %></li>
               <li><%= link_to "Switzerland",   '/countries/CH' %></li>
+              <li>
+                <%= link_to search_path do %>
+
+                  <span class="glyphicon glyphicon-search"></span> Search
+
+                <% end %>
+              </li>
             </ul>
           </nav>
         </div>

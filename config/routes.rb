@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   root to: 'jodel_city#index', country_name: "DE"
   get 'countries/:country_name', to: 'jodel_city#index', as: 'jodel_cities_path'
   get 'cities/:city_name', to: 'jodel_city#show', as: 'jodel_city_path'
+  get 'search', to: 'jodel_city#new'
+  post 'cities', to: 'jodel_city#create'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

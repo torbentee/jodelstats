@@ -1,0 +1,16 @@
+<div class="container">
+  <h1 style="font-size: 3em; text-align: center; color: #<%= random_color %>">Jodel Search</h1>
+  <div class="col-md-8 col-md-offset-2 search">
+    <form accept-charset="UTF-8" action="/cities" class="new_city"
+    id="new_city" method="post">
+    <div class="input-group">
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <input type="text" name="city[name]" class="form-control" placeholder="Eine Stadt eingeben..."
+      action="cities">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Go!</button>
+      </span>
+    </div>
+    </form><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+</div><!-- /.row -->
