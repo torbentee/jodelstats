@@ -12,7 +12,7 @@ class JodelCityController < ApplicationController
   end
 
   def create
-    unless @city = JodelCity.find_by(name: params[:city][:name])
+    unless @city = JodelCity.where("lower(name) = ?", params[:city][:name].downcase).first
       @gHandler ||= GoogleHandler.new
       @city = JodelCity.create(@gHandler.coordinates_for(params[:city][:name]))
       @api_key ||= ApiKey.first.token
