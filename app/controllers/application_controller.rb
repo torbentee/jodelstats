@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 
-  before_filter :redirect_to if Rails.env.production?
+  before_filter :redirect_domain_to if Rails.env.production?
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   private
 
-    def redirect_to
+    def redirect_domain_to
       domain_to_redirect_to = 'www.jodelstats.com'
       domain_exceptions = ['jodelstats.com', 'www.jodelstats.com']
       should_redirect = !(domain_exceptions.include? request.host)
