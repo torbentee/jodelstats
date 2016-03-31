@@ -24,7 +24,7 @@ en:
   search_title: "Search for a City"
   city_title: "Top Jodels in"
 
-  error_city_deleted: "Sorry, your search request expired. Please search for your city again."
+  error_city_deleted: "Sorry, your search request has expired. Please search for your city again."
   no_jodel_found: "(Sorry, no posts were found. Please try again in a few minutes.)"
   top_posts_header: "Top Posts on Jodel"
   city_posts_header: "Loudest Jodels in"
