@@ -20,7 +20,11 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  title: "Jodel Stats | Best Jodel Posts worldwide"
+  main_title: "Best Jodel Posts Worldwide"
+  search_title: "Search for a City"
+  city_title: "Top Jodels in"
+
+  error_city_deleted: "Sorry, your search request expired. Please search for your city again."
   no_jodel_found: "(Sorry, no posts were found. Please try again in a few minutes.)"
   top_posts_header: "Top Posts on Jodel"
   city_posts_header: "Loudest Jodels in"

@@ -5,6 +5,7 @@ class JodelCityController < ApplicationController
 
   def show
     @city = JodelCity.find_by(name: params[:city_name])
+    redirect_to(search_path, {:flash => { :error => I18n.t('error_city_deleted') }}) if @city.nil?
   end
 
   def new
