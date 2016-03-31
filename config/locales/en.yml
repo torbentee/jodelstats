@@ -20,4 +20,22 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  title: "Jodel Stats | Best Jodel Posts worldwide"
+  no_jodel_found: "(Sorry, no posts were found. Please try again in a few minutes.)"
+  top_posts_header: "Top Posts on Jodel"
+  city_posts_header: "Loudest Jodels in"
+  city_jodel_description_1: "Upvoted"
+  city_jodel_description_2: "times:"
+  top_jodel_description_1: "upvoted"
+  top_jodel_description_2: "times:"
+  search_placeholder: "Enter a city name..."
+  city_not_found: "Sorry, no city with that name could be found."
+  click_to_view: "Click to View"
+  germany: "Germany"
+  austria: "Austria"
+  switzerland: "Switzerland"
+  search: "Search"
+
+  creator: "Made by Patrick Petrovic"
+  legal_info: "Updated every 5 minutes. This website is unofficial and not affiliated with Jodel."
+  github: "Code on GitHub"

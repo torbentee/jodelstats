@@ -1,0 +1,1 @@
+{"location":{"country":"US","name":"unknown","loc_accuracy":65,"loc_coordinates":{"lat":48.97713000194612,"lng":8.455864241301391}},"device_uid":"\/Uih3tOoOk47Co4LrhevSRmvH\/fZL3HvbK2C+4h+6VM=","client_id":"cd871f92-a23f-4afc-8fff-51ff9dc9184e"}

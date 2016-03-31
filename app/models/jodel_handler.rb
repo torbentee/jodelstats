@@ -15,7 +15,7 @@ class JodelHandler
     response = get_posts(latitude, longitude)
     puts response
     if response["voted"].nil?
-      {"vote_count" => 0, "message" => "(Kein Jodel gefunden. Schau in 5 Minuten nochmal vorbei.)"}
+      { "vote_count" => 0, "message" => t('no_jodel_found') }
     else
       response["voted"][0]
     end

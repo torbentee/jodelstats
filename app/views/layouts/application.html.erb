@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Jodel Stats</title>
+  <title><%= t('title') %></title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -16,19 +16,25 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <%= link_to "Jodel Stats", '/', class: "navbar-brand" %>
+          <%= link_to "Jodel Stats", '/' + locale_param, class: "navbar-brand" %>
         </div>
         <div id="myNavbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "Germany",   '/countries/DE' %></li>
-            <li><%= link_to "Austria",   '/countries/AT' %></li>
-            <li><%= link_to "Switzerland",   '/countries/CH' %></li>
+            <li><%= link_to t('germany'),   "/countries/DE?locale=#{I18n.locale}" %></li>
+            <li><%= link_to t('austria'),   "/countries/AT?locale=#{I18n.locale}" %></li>
+            <li><%= link_to t('switzerland'),   "/countries/CH?locale=#{I18n.locale}" %></li>
             <li>
               <%= link_to search_path do %>
 
-                <span class="glyphicon glyphicon-search"></span> Search
+                <span class="glyphicon glyphicon-search"></span> <%= t('search') %>
 
               <% end %>
+            </li>
+            <li>
+              <%= link_to image_tag('en.svg', class: "language"), "/?locale=en", class: "language_link"%>
+            </li>
+            <li>
+              <%= link_to image_tag('de.svg', class: "language"), "/?locale=de", class: "language_link"%>
             </li>
           </ul>
         </div>
@@ -41,10 +47,10 @@
         <%= yield %>
         <hr>
         <div class="legal">
-        Erstellt von Patrick Petrovic ( <a href="https://www.facebook.com/patrick.petrovic">Facebook</a>
-         | <a href="http://twitter.com/ppati000">Twitter</a> | <a href="mailto:ppati000@me.com">Mail</a> ).
-          Alle 5 Minuten aktualisiert. Diese Website ist inoffiziell und nicht mit Jodel affiliiert.
-        <a href="https://github.com/ppati000/jodelstats">Code auf GitHub</a>
+          <%= t('creator') %> ( <a href="https://www.facebook.com/patrick.petrovic">Facebook</a>
+          | <a href="http://twitter.com/ppati000">Twitter</a> | <a href="mailto:ppati000@me.com">Mail</a> ).
+          <%= t('legal_info') %>
+          <a href="https://github.com/ppati000/jodelstats"><%= t('github') %></a>
         <br>
         </div>
       </div>

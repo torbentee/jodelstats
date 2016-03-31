@@ -26,9 +26,9 @@ class JodelCityController < ApplicationController
 
     if @city.nil?
       puts "redirect WITH FLASH"
-      redirect_to '/search', flash: {error: "Es konnte leider keine Stadt mit diesem Namen gefunden werden."}
+      redirect_to "/search?locale=#{I18n.locale}", flash: {error: I18n.t('city_not_found')}
     else
-      redirect_to "/cities/#{URI::escape(@city.name)}"
+      redirect_to "/cities/#{URI::escape(@city.name)}?locale=#{I18n.locale}"
     end
   end
 

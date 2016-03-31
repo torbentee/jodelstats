@@ -4,8 +4,8 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root to: 'jodel_city#index', country_name: "DE"
-  get 'countries/:country_name', to: 'jodel_city#index', as: 'jodel_cities_path'
-  get 'cities/:city_name', to: 'jodel_city#show', as: 'jodel_city_path'
+  get 'countries/:country_name', to: 'jodel_city#index', as: 'jodel_cities'
+  get 'cities/:city_name', to: 'jodel_city#show', as: 'jodel_city'
   get 'search', to: 'jodel_city#new'
   post 'cities', to: 'jodel_city#create'
 
