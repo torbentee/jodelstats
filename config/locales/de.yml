@@ -40,6 +40,9 @@ de:
   switzerland: "Schweiz"
   search: "Suchen"
 
+  main_description: "Die besten Posts auf Jodel aus der ganzen Welt!"
+  search_description: "Suche nach den besten Posts auf Jodel in jeder beliebigen Stadt, weltweit!"
+
   creator: "Erstellt von Patrick Petrovic"
   legal_info: "Alle 5 Minuten aktualisiert. Diese Website ist inoffiziell und nicht mit Jodel affiliiert."
   github: "Code auf GitHub"
