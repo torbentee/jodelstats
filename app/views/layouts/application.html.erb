@@ -9,9 +9,9 @@
   <meta name="description" content="<%= yield(:description) == "" ? t(:main_description) : yield(:description) %>"/>
   <link rel="alternate" href="/" hreflang="x-default" />
   <% if I18n.locale == :de %>
-    <link rel="alternate" href="<%= request.env['PATH_INFO'] + '/?locale=en' %>" hreflang="en">
+    <link rel="alternate" href="<%= alt_language_path %>" hreflang="en">
   <% else %>
-    <link rel="alternate" href="<%= request.env['PATH_INFO'] + '/?locale=de' %>" hreflang="de">
+    <link rel="alternate" href="<%= alt_language_path %>" hreflang="de">
   <% end %>
 </head>
 <body>
@@ -40,12 +40,12 @@
             <% if I18n.locale == :de %>
               <li>
                 <%= link_to image_tag('en.svg', class: "language", size: "20x15", alt: "English"),
-                request.env['PATH_INFO'] + "/?locale=en", class: "language_link", title: "Switch language to English"%>
+                alt_language_path, class: "language_link", title: "Switch language to English"%>
               </li>
             <% else %>
               <li>
                 <%= link_to image_tag('de.svg', class: "language", size: "20x15", alt: "German"),
-                request.env['PATH_INFO'] + "/?locale=de", class: "language_link", title: "Switch language to German"%>
+                alt_language_path, class: "language_link", title: "Switch language to German"%>
               </li>
             <% end %>
           </ul>

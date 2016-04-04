@@ -6,4 +6,9 @@ module ApplicationHelper
   def locale_param
     "?locale=#{I18n.locale}"
   end
+
+  def alt_language_path
+    new_locale = I18n.locale == :de ? :en : :de
+    request.env['PATH_INFO'] == '' ? "/?locale=#{new_locale}" : request.env['PATH_INFO'] + "?locale=#{new_locale}"
+  end
 end
