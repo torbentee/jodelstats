@@ -7,6 +7,12 @@
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="<%= yield(:description) == "" ? t(:main_description) : yield(:description) %>"/>
+  <link rel="alternate" href="/" hreflang="x-default" />
+  <% if I18n.locale == :de %>
+    <link rel="alternate" href="<%= request.env['PATH_INFO'] + '/?locale=en' %>" hreflang="en">
+  <% else %>
+    <link rel="alternate" href="<%= request.env['PATH_INFO'] + '/?locale=de' %>" hreflang="de">
+  <% end %>
 </head>
 <body>
   <header class="navbar navbar-fixed-top navbar-inverse"  style="background-color: #<%=random_color%>">
@@ -31,12 +37,17 @@
 
               <% end %>
             </li>
-            <li>
-              <%= link_to image_tag('en.svg', class: "language", size: "20x15"), "/?locale=en", class: "language_link"%>
-            </li>
-            <li>
-              <%= link_to image_tag('de.svg', class: "language", size: "20x15"), "/?locale=de", class: "language_link"%>
-            </li>
+            <% if I18n.locale == :de %>
+              <li>
+                <%= link_to image_tag('en.svg', class: "language", size: "20x15", alt: "English"),
+                request.env['PATH_INFO'] + "/?locale=en", class: "language_link", title: "Switch language to English"%>
+              </li>
+            <% else %>
+              <li>
+                <%= link_to image_tag('de.svg', class: "language", size: "20x15", alt: "German"),
+                request.env['PATH_INFO'] + "/?locale=de", class: "language_link", title: "Switch language to German"%>
+              </li>
+            <% end %>
           </ul>
         </div>
       </div>

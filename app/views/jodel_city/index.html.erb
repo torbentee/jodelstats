@@ -10,7 +10,7 @@
         <div class="col-md-4">
           <% jodel = get_first_jodel(city) %>
 
-          <b><%=link_to(city.name, "/cities/" + city.name + locale_param)%></b>
+          <b><%=link_to(city.name, "/cities/" + city.name + locale_param, title: t(:city_description) + ' ' + city.name)%></b>
           <%= t('top_jodel_description_1') %>
           <b><%=jodel.vote_count%></b>
           <%= t('top_jodel_description_2') %>
