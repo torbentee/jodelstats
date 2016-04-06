@@ -3,7 +3,7 @@ class JodelCityController < ApplicationController
     @jodel_cities = JodelCity.where(country: params[:country_name]).order(highest_votes: :desc)
     respond_to do |format|
       format.html
-      format.json { render json: @jodel_cities }
+      format.json { render json: @jodel_cities, methods: :first_jodel }
     end
   end
 
