@@ -1,6 +1,7 @@
 class JodelCityController < ApplicationController
   def index
     @jodel_cities = JodelCity.where(country: params[:country_name]).order(highest_votes: :desc)
+    redirect_to "/?locale=#{I18n.locale}" and return if @jodel_cities.empty?
     respond_to do |format|
       format.html
       format.json { render json: @jodel_cities, methods: :first_jodel }

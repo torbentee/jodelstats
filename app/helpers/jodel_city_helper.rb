@@ -8,7 +8,7 @@ module JodelCityHelper
     when "CH"
       I18n.t(:switzerland)
     else
-      abbr
+      nil
     end
   end
 end
