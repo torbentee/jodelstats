@@ -40,9 +40,10 @@ de:
   switzerland: "Schweiz"
   search: "Suchen"
 
-  main_description: "Die lautesten und besten Posts auf Jodel aus der ganzen Welt! Best of Jodel - live."
-  search_description: "Suche nach den besten und lautesten Posts auf Jodel in jeder beliebigen Stadt, weltweit! Best of Jodel - live."
+  main_description: "Die lautesten und besten Posts auf Jodel aus der ganzen Welt! Best of Jodel - live. Deutschland, Österreich, Schweiz: Finde die besten Jodel aus deiner Stadt!"
+  search_description: "Jodel Suche – Suche nach den besten und lautesten Posts auf Jodel in deiner Stadt, weltweit! Best of Jodel - live."
   city_description: "Die lautesten und besten Jodel-Posts in"
+  city_description_2: "Finde die besten und lustigsten Jodel Sprüche aus deiner Stadt in Deutschland, Österreich oder der Schweiz!"
 
   creator: "Erstellt von Patrick Petrovic"
   legal_info: "Alle 5 Minuten aktualisiert. Diese Website ist inoffiziell und nicht mit Jodel affiliiert."
