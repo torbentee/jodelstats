@@ -9,7 +9,7 @@ class JodelCityController < ApplicationController
 
   def show
     @city = JodelCity.find_by(name: params[:city_name])
-    redirect_to(search_path, {:flash => { :error => I18n.t('error_city_deleted') }}) if @city.nil?
+    redirect_to(search_path, {:flash => { :error => I18n.t('error_city_deleted') }}) and return if @city.nil?
     respond_to do |format|
       format.html
       format.json { render json: @city.jodel_posts }
