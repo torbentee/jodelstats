@@ -21,13 +21,17 @@ class JodelCityController < ApplicationController
     @city = JodelCity.new
   end
 
+  def city_from_database(name)
+    JodelCity.where("lower(name) = ?", name.downcase).first
+  end
+
   def create
-    unless @city = JodelCity.where("lower(name) = ?", params[:city][:name].downcase).first
+    unless @city = city_from_database(params[:city][:name])
       @gHandler ||= GoogleHandler.new
       result = @gHandler.coordinates_for(params[:city][:name])
 
       if !result.nil?
-        @city = JodelCity.create(result)
+        @city = city_from_database(result[:name]) || JodelCity.create(result)
         @api_key ||= ApiKey.first.token
         handler = JodelHandler.new(@api_key)
         JodelCityController.update_city(@city, handler)
