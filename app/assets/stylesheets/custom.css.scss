@@ -39,6 +39,7 @@ textarea {
 }
 
 .legal {
+  font-size: 12px;
   width: 100%;
   margin-bottom: 1em;
   display: block;
@@ -106,3 +107,17 @@ a.image_link {
   padding-left: 0px;
   padding-right: 0px;
 }
+
+.fb-like {
+  width: 100%;
+}
+
+nav.share {float: right;} /* shareable's nav tag */
+nav.share div {float:right;}
+nav.share iframe {border:0; margin-top:0; padding-top:0;} /* if using medium sized buttons */
+#___plusone_0 {font-size: default !important;}
+.fb_iframe_widget span { vertical-align: top; }
+.fb_edge_widget_with_comment { vertical-align: top;}
+.fb-like{display:inline-block}
+* html .fb-like{display:inline}/* ie6 inline block fix*/
+*+html .fb-like{display:inline}/* ie7 inline block fix*/
