@@ -50,6 +50,8 @@ Obtaining a new Jodel account works as follows (using the iOS Client here). If y
 
 ### Todo
 - ~~Fix API Keys (API Keys are currently invalidated after 1 week, and fetching new API keys needs to be implemented)~~ Edit: The app can now fetch new API keys, but only if a valid API key **already exists** in the database. You should never use API keys belonging to the same Jodel account for different environments, or else one environment will at some point update the API key, leaving the other environment with the old, now invalid API key.
-- Internationalization
-- Bug fixes?
+- Internationalization (Swedish? French?)
+- Pagination for the front page
+- Make linking to searches possible. As of now, cities you search for become inaccessible after five minutes until you type and search the name again.
+- Make refreshing cities atomic. As of now, all posts of a city are deleted before adding the new posts.
 - Anything else you like
