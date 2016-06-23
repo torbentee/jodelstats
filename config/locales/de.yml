@@ -24,6 +24,9 @@ de:
   search_title: "Stadt suchen"
   city_title: "Die besten Jodel in"
 
+  banner_link_1: "NEU: Speichere diese Seite als Lesezeichen für die besten Jodel-Posts aus "
+  banner_link_2: "! Oder teile diesen Link: "
+
   error_city_deleted: "Deine Suche konnte leider nicht mehr gespeichert werden. Bitte suche erneut nach deiner Stadt."
   no_jodel_found: "(Ups, keinen Jodel gefunden. Versuch es doch in ein paar Minuten noch einmal!)"
   top_posts_header: "Die besten Posts auf Jodel"

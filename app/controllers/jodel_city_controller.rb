@@ -1,4 +1,7 @@
 class JodelCityController < ApplicationController
+
+  @@base_url = "http://www.jodelstats.com"
+
   def index
     @jodel_cities = JodelCity.where(country: params[:country_name]).order(highest_votes: :desc)
     redirect_to "/?locale=#{I18n.locale}" and return if @jodel_cities.empty?
@@ -8,9 +11,21 @@ class JodelCityController < ApplicationController
     end
   end
 
+  #Tries to load the city. If the city does not exist, tries to do a search.
+  #If the city cannot be found, the user is redirected to search.
   def show
     @city = JodelCity.find_by(name: params[:city_name])
-    redirect_to(search_path, {:flash => { :error => I18n.t('error_city_deleted') }}) and return if @city.nil?
+    if @city.nil?
+      create_city(params[:city_name])
+      if @city.nil?
+        redirect_to(search_path, {:flash => { :error => I18n.t('error_city_deleted') }}) and return
+      end
+    end
+    if @city.country.nil?
+      link = request.base_url + request.fullpath.split("?")[0]
+      flash.now[:success] = (I18n.t('banner_link_1') + @city.name + I18n.t('banner_link_2') +
+            ActionController::Base.helpers.link_to(link, link)).html_safe
+    end
     respond_to do |format|
       format.html
       format.json { render json: @city.jodel_posts }
@@ -21,14 +36,30 @@ class JodelCityController < ApplicationController
     @city = JodelCity.new
   end
 
+  #Returns city if it exists in the database
   def city_from_database(name)
     JodelCity.where("lower(name) = ?", name.downcase).first
   end
 
+  #Creates the city and recirects to its page or back to search if the city name was not found.
   def create
-    unless @city = city_from_database(params[:city][:name])
+    create_city(params[:city][:name])
+    if @city.nil?
+      redirect_to "/search?locale=#{I18n.locale}", flash: {error: I18n.t('city_not_found')}
+    else
+      redirect_to "/cities/#{URI::escape(@city.name)}?locale=#{I18n.locale}"
+    end
+  end
+
+  #Checks if a given city exist in the database and returns the city if it exists
+  #If the city is not found, Google Maps is queried.
+  #The name Google returns is looked up in the database too. (useful e.g. if
+  #the user made a typo)
+  #If that also fails, we try to create a new city from Google's data.
+  def create_city(name)
+    unless @city = city_from_database(name)
       @gHandler ||= GoogleHandler.new
-      result = @gHandler.coordinates_for(params[:city][:name])
+      result = @gHandler.coordinates_for(name)
 
       if !result.nil?
         @city = city_from_database(result[:name]) || JodelCity.create(result)
@@ -36,13 +67,6 @@ class JodelCityController < ApplicationController
         handler = JodelHandler.new(@api_key)
         JodelCityController.update_city(@city, handler)
       end
-    end
-
-    if @city.nil?
-      puts "redirect WITH FLASH"
-      redirect_to "/search?locale=#{I18n.locale}", flash: {error: I18n.t('city_not_found')}
-    else
-      redirect_to "/cities/#{URI::escape(@city.name)}?locale=#{I18n.locale}"
     end
   end
 

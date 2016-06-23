@@ -24,7 +24,10 @@ en:
   search_title: "Search for a City"
   city_title: "Best Jodels in"
 
-  error_city_deleted: "Sorry, your search request has expired. Please search for your city again."
+  banner_link_1: "NEW: Bookmark this page to have instant access to the best Jodel posts from "
+  banner_link_2: "! Or send this link to a friend: "
+
+  error_city_deleted: "Sorry, that city could not be found. Please search for another city."
   no_jodel_found: "(Sorry, no posts were found. Please try again in a few minutes.)"
   top_posts_header: "Top Posts on Jodel"
   city_posts_header: "Loudest Jodel Posts in"
