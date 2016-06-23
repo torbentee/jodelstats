@@ -4,14 +4,14 @@
 <h2><%= t('city_posts_header') + ' ' + @city.name %></h2>
 <br>
 <div class="row">
+  <% i = 0 %>
   <% @city.jodel_posts.each_with_index do |jodel, i| %>
-        <% if i != 0 && i % 3 == 0 %>
-          </div><div class="row">
-        <% end %>
+        <%= render 'row_seperator', i: i %>
         <div class="col-md-4">
           <%= t('city_jodel_description_1') %> <b><%= jodel.vote_count %></b> <%= t('city_jodel_description_2') %>
           <%= render 'jodel_post', city: @city, jodel: jodel %>
         </div>
   <% end %>
+  <%= render 'recommendations', locals: { i: i, name: @city.name, country: false } %>
 </div>
 </div>

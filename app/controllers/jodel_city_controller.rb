@@ -26,6 +26,7 @@ class JodelCityController < ApplicationController
       flash.now[:success] = (I18n.t('banner_link_1') + @city.name + I18n.t('banner_link_2') +
             ActionController::Base.helpers.link_to(link, link)).html_safe
     end
+    
     respond_to do |format|
       format.html
       format.json { render json: @city.jodel_posts }

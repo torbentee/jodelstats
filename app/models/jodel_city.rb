@@ -11,4 +11,26 @@ class JodelCity < ActiveRecord::Base
     return jodel
   end
 
+  def to_param  # overridden
+    name
+  end
+
+  def self.random
+    self.offset(rand(self.count)).first
+  end
+
+  def self.random_except_for(name, country: country)
+    puts country
+    puts name
+    if country
+      otherCities = self.where.not(country: name)
+      return otherCities.offset(rand(otherCities.count)).first
+    else
+      while(true)
+        city = random
+        return city if (city.name != name)
+      end
+    end
+  end
+
 end
