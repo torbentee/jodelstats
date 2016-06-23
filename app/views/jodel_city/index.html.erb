@@ -3,7 +3,7 @@
 <h2><%= t('top_posts_header') %> – <%= full_country_name(params[:country_name]) %></h2>
 <br>
 <div class="row">
-  <% i = 0 %>
+  <% counter = 0 %>
   <% @jodel_cities.each_with_index do |city, i| %>
         <%= render 'row_seperator', i: i%>
         <div class="col-md-4">
@@ -16,9 +16,9 @@
           <br>
 
           <%= render 'jodel_post', city: city, jodel: jodel %>
-
+          <% counter = i %>
         </div>
   <% end %>
-  <%= render 'recommendations', locals: {i: i, name: params[:country_name], country: true} %>
+  <%= render 'recommendations', locals: { i: counter, name: params[:country_name], country: true } %>
 </div>
 </div>
