@@ -7,6 +7,8 @@ module JodelCityHelper
       I18n.t(:austria)
     when "CH"
       I18n.t(:switzerland)
+    when "NL"
+      I18n.t(:netherlands)
     else
       nil
     end
