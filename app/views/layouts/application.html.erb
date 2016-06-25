@@ -9,9 +9,22 @@
   <meta name="description" content="<%= yield(:description) == "" ? t(:main_description) : yield(:description) %>"/>
   <% if I18n.locale == :de %>
     <link rel="alternate" href="<%= alt_language_path %>" hreflang="en">
-  <% else %>
+  <% end %>
+  <% if I18n.locale == :en %>
     <link rel="alternate" href="<%= alt_language_path %>" hreflang="de">
   <% end %>
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "url": "http://www.jodelstats.com/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "http://www.jodelstats.com/cities/{search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+  </script>
 </head>
 <body>
   <header class="navbar navbar-fixed-top navbar-inverse"  style="background-color: #<%=random_color%>">
