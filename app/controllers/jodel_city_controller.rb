@@ -3,8 +3,12 @@ class JodelCityController < ApplicationController
   @@base_url = "http://www.jodelstats.com"
 
   def index
-    flash.now[:error] = ("Einige Jodel werden momentan möglicherweise nicht geladen. An einer Lösung wird gearbeitet!")
-    flash.now[:success] = ("NEU: " + ActionController::Base.helpers.link_to("Jodel Stats für Android – Jetzt im Play Store laden!", "https://play.google.com/store/apps/details?id=com.jodelstatsreactnative")).html_safe
+    if ENV["jodelstats_error_message"]
+      flash.now[:error] = ENV["jodelstats_error_message"]
+    end
+    if ENV["jodelstats_success_message"]
+      flash.now[:success] = ENV["jodelstats_success_message"]
+    end
     @jodel_cities = JodelCity.where(country: params[:country_name]).order(highest_votes: :desc)
     redirect_to "/?locale=#{I18n.locale}" and return if @jodel_cities.empty?
     respond_to do |format|
