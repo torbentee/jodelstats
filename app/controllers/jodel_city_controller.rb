@@ -93,7 +93,7 @@ class JodelCityController < ApplicationController
         city.destroy
       else
         self.update_city(city, handler)
-        sleep(ENV["jodelstats_sleep_seconds"])
+        sleep(ENV["jodelstats_sleep_seconds"].to_i) if ENV["jodelstats_sleep_seconds"]
       end
     end
   end
