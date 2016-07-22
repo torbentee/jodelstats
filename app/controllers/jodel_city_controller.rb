@@ -103,6 +103,8 @@ class JodelCityController < ApplicationController
     top_posts = response["voted"]
     if !top_posts.nil? && !top_posts.empty?
       city.update_attributes(highest_votes: top_posts[0]["vote_count"])
+    end
+    if !top_posts.nil?
       top_posts.each do |post|
         city.jodel_posts.create(post_id: post["id"], created_at: post["created_at"],
               updated_at: post["updated_at"], message: post["message"],
