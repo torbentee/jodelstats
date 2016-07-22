@@ -7,7 +7,9 @@
   <% @jodel_cities.each_with_index do |city, i| %>
         <%= render 'row_seperator', i: i%>
         <div class="col-md-4">
-          <% jodel = city.first_jodel %>
+          <% jodel = city.first_jodel || JodelPost.new(
+          message: t('no_jodel_found'), color: '404040', vote_count: 0
+          ) %>
 
           <b><%=link_to(city.name, "/cities/" + city.name + locale_param, title: t(:city_description) + ' ' + city.name)%></b>
           <%= t('top_jodel_description_1') %>
