@@ -1,17 +1,19 @@
 <% locals[:i] += 1%>
-<% jodel = random_city.jodel_posts.first || JodelPost.new(
-message: t('no_jodel_found'), color: '404040', vote_count: 0) %>
 <%= render 'row_seperator', i: locals[:i] %>
 <% random_city = JodelCity.random_except_for(locals[:name], country: locals[:country]) %>
 <div class="col-md-4">
   <%= t('you_might_like') %> <b><%= link_to(random_city.name, url_for(random_city)) %></b>
-  <%= render 'jodel_post', city: random_city, jodel: jodel %>
+  <%= render 'jodel_post', city: random_city, jodel: random_city.jodel_posts.first || JodelPost.new(
+  message: t('no_jodel_found'), color: '404040', vote_count: 0
+  ) %>
 </div>
 <% while (locals[:i] % 3 != 2)%>
   <% locals[:i] += 1 %>
   <% random_city = JodelCity.random_except_for(locals[:name], country: locals[:country]) %>
   <div class="col-md-4">
     <%= t('you_might_like') %> <b><%= link_to(random_city.name, url_for(random_city)) %></b>
-    <%= render 'jodel_post', city: random_city, jodel: jodel %>
+    <%= render 'jodel_post', city: random_city, jodel: random_city.jodel_posts.first || JodelPost.new(
+    message: t('no_jodel_found'), color: '404040', vote_count: 0
+    ) %>
   </div>
 <% end %>
