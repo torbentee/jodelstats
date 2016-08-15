@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'cities/:city_name', to: 'jodel_city#show', as: 'jodel_city'
   get 'search', to: 'jodel_city#new'
   post 'cities', to: 'jodel_city#create'
+  get '/.well-known/acme-challenge/:id' => 'application#letsencrypt'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
