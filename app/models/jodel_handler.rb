@@ -8,6 +8,17 @@ class JodelHandler
   end
 
   def get_posts(latitude, longitude)
+    self.class.put("/users/location?access_token=#{@api_key}",
+      body: {
+        location: {
+          loc_coordinates: {
+            lat: latitude,
+            lng: longitude
+          }
+        }
+      }.to_json,
+      headers: { 'Content-Type' => 'application/json' }
+    )
     self.class.get("/posts/location/combo?lat=#{latitude}&lng=#{longitude}&access_token=#{@api_key}&")
   end
 
