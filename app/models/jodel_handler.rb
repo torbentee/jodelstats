@@ -14,7 +14,9 @@ class JodelHandler
           loc_coordinates: {
             lat: latitude,
             lng: longitude
-          }
+          },
+          city: "Berlin",
+          country: "DE"
         }
       }.to_json,
       headers: { 'Content-Type' => 'application/json' }
