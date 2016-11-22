@@ -8,6 +8,6 @@
         </a>
       </div>
     <% else %>
-      <%= simple_format(jodel.message) %>
+      <p style="white-space: pre-wrap"><%=jodel.message.gsub("\n", "<br>").html_safe%></p>
     <% end %>
   </div>
