@@ -80,9 +80,6 @@ class JodelCityController < ApplicationController
   end
 
   def self.update_cities
-    @api_key ||= ApiKey.first.token
-    handler = JodelHandler.new(@api_key)
-
     if ApiKey.first.expiration_date < 1.hour.from_now
       self.update_api_token
     end
@@ -92,13 +89,16 @@ class JodelCityController < ApplicationController
       if city.country == nil
         city.destroy
       else
-        self.update_city(city, handler)
+        self.update_city(city)
         sleep(ENV["jodelstats_sleep_seconds"].to_i) if ENV["jodelstats_sleep_seconds"]
       end
     end
   end
 
-  def self.update_city(city, handler)
+  def self.update_city(city)
+    @api_key = ApiKey.first.token
+    handler = JodelHandler.new(@api_key)
+
     city.jodel_posts.destroy_all
     response = handler.get_posts(city.latitude, city.longitude)
     top_posts = response["voted"]
