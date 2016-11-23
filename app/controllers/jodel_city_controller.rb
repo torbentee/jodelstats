@@ -22,7 +22,7 @@ class JodelCityController < ApplicationController
   def show
     @city = JodelCity.find_by(name: params[:city_name])
     if @city.nil?
-      create_city(params[:city_name])
+      @city = create_city(params[:city_name])
       if @city.nil?
         redirect_to(search_path, {:flash => { :error => I18n.t('error_city_deleted') }}) and return
       end
@@ -42,7 +42,6 @@ class JodelCityController < ApplicationController
   end
 
   def new
-    @city = JodelCity.new
   end
 
   #Returns city if it exists in the database
@@ -52,11 +51,11 @@ class JodelCityController < ApplicationController
 
   #Creates the city and recirects to its page or back to search if the city name was not found.
   def create
-    create_city(params[:city][:name])
-    if @city.nil?
+    city = create_city(params[:city][:name])
+    if city.nil?
       redirect_to "/search?locale=#{I18n.locale}", flash: {error: I18n.t('city_not_found')}
     else
-      redirect_to "/cities/#{URI::escape(@city.name)}?locale=#{I18n.locale}"
+      redirect_to "/cities/#{URI::escape(city.name)}?locale=#{I18n.locale}"
     end
   end
 
@@ -66,15 +65,21 @@ class JodelCityController < ApplicationController
   #the user made a typo)
   #If that also fails, we try to create a new city from Google's data.
   def create_city(name)
-    unless @city = city_from_database(name)
+    city = city_from_database(name)
+    unless city
       @gHandler ||= GoogleHandler.new
       result = @gHandler.coordinates_for(name)
 
       if !result.nil?
-        @city = city_from_database(result[:name]) || JodelCity.create(result)
-        @api_key ||= ApiKey.first.token
-        handler = JodelHandler.new(@api_key)
-        JodelCityController.update_city(@city, handler)
+        city = city_from_database(result[:name])
+        if city
+          return city
+        end
+        city = JodelCity.create(result)
+        api_key = ApiKey.first.token
+        handler = JodelHandler.new(api_key)
+        JodelCityController.update_city(city)
+        return city
       end
     end
   end
@@ -90,7 +95,7 @@ class JodelCityController < ApplicationController
         city.destroy
       else
         self.update_city(city)
-        sleep(ENV["jodelstats_sleep_seconds"].to_i) if ENV["jodelstats_sleep_seconds"]
+        sleep((ENV["jodelstats_sleep_seconds"] || 20).to_i)
       end
     end
   end
